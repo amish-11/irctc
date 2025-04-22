@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {git
     // Station enum data
     const stations = [
         'JAMMU', 'JALANDHAR', 'LUDHIANA', 'DELHI', 'KANPUR',
