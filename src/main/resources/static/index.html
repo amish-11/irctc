@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Train Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/IRCTC-Preview.jpg" alt="IRCTC Logo" style="width: 200px; height: 100px;">
+            <h1>IRCTC Train Booking</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" data-section="home">Home</a></li>
+            <li><a href="#" data-section="trains">Trains</a></li>
+            <li><a href="#" data-section="book-tickets">Book Tickets</a></li>
+            <li><a href="#" data-section="register">Register</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <h2>Explore India by Train</h2>
+            <p>Book your train tickets easily and start your journey across beautiful Indian cities</p>
+            <button id="book-now-btn" class="btn primary-btn">Book Now</button>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Multiple Routes</h3>
+                <p>Travel between major cities like Delhi, Mumbai, Chennai, and more</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>Easy Booking</h3>
+                <p>Book tickets for yourself and others with just a few clicks</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-search"></i>
+                <h3>Seat Availability</h3>
+                <p>Check for available seats between any stations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trains Section -->
+    <section id="trains" class="section">
+        <h2>Add & Manage Trains</h2>
+        <div class="container">
+            <div class="form-container">
+                <h3>Add New Train</h3>
+                <form id="add-train-form">
+                    <div class="form-group">
+                        <label for="train-route">Route</label>
+                        <div id="route-stations" class="route-builder">
+                            <div class="station-container">
+                                <select class="station-select" required>
+                                    <option value="" disabled selected>Select station</option>
+                                </select>
+                                <button type="button" class="btn small-btn add-station-btn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="departure-time">Departure Time</label>
+                        <input type="time" id="departure-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="seats">Number of Seats</label>
+                        <input type="number" id="seats" min="1" required>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Add Train</button>
+                </form>
+            </div>
+
+            <div class="info-container">
+                <h3>Train Operations</h3>
+                <div class="card">
+                    <h4>Check Available Seats</h4>
+                    <form id="check-seats-form">
+                        <div class="form-group">
+                            <label for="train-id-seats">Train ID</label>
+                            <input type="number" id="train-id-seats" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="from-station-seats">From Station</label>
+                            <select id="from-station-seats" required>
+                                <option value="" disabled selected>Select station</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="to-station-seats">To Station</label>
+                            <select id="to-station-seats" required>
+                                <option value="" disabled selected>Select station</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Check Availability</button>
+                    </form>
+                    <div id="availability-result" class="result-box"></div>
+                </div>
+
+                <div class="card">
+                    <h4>Get Boarding Statistics</h4>
+                    <form id="boarding-stats-form">
+                        <div class="form-group">
+                            <label for="train-id-boarding">Train ID</label>
+                            <input type="number" id="train-id-boarding" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="station-boarding">Station</label>
+                            <select id="station-boarding" required>
+                                <option value="" disabled selected>Select station</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Get Boarding Count</button>
+                    </form>
+                    <div id="boarding-result" class="result-box"></div>
+                </div>
+
+                <div class="card">
+                    <h4>Find Oldest Passenger</h4>
+                    <form id="oldest-passenger-form">
+                        <div class="form-group">
+                            <label for="train-id-oldest">Train ID</label>
+                            <input type="number" id="train-id-oldest" required>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Find Oldest Age</button>
+                    </form>
+                    <div id="oldest-result" class="result-box"></div>
+                </div>
+
+                <div class="card">
+                    <h4>Trains In Time Range</h4>
+                    <form id="trains-time-range-form">
+                        <div class="form-group">
+                            <label for="station-time-range">Station</label>
+                            <select id="station-time-range" required>
+                                <option value="" disabled selected>Select station</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="start-time">Start Time</label>
+                            <input type="time" id="start-time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="end-time">End Time</label>
+                            <input type="time" id="end-time" required>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Find Trains</button>
+                    </form>
+                    <div id="time-range-result" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Tickets Section -->
+    <section id="book-tickets" class="section">
+        <h2>Book Train Tickets</h2>
+        <div class="container">
+            <form id="book-ticket-form">
+                <div class="form-group">
+                    <label for="train-id-booking">Train ID</label>
+                    <input type="number" id="train-id-booking" required>
+                </div>
+                <div class="form-group">
+                    <label for="from-station-booking">From Station</label>
+                    <select id="from-station-booking" required>
+                        <option value="" disabled selected>Select station</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="to-station-booking">To Station</label>
+                    <select id="to-station-booking" required>
+                        <option value="" disabled selected>Select station</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="booking-person-id">Booking Person ID</label>
+                    <input type="number" id="booking-person-id" required>
+                </div>
+                <div class="form-group">
+                    <label for="passengers">Number of Seats</label>
+                    <input type="number" id="passengers" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Passenger IDs (comma separated)</label>
+                    <input type="text" id="passenger-ids" placeholder="e.g. 1,2,3" required>
+                </div>
+                <button type="submit" class="btn primary-btn">Book Ticket</button>
+            </form>
+            <div id="booking-result" class="result-box"></div>
+        </div>
+    </section>
+
+    <!-- Register Passenger Section -->
+    <section id="register" class="section">
+        <h2>Register as a Passenger</h2>
+        <div class="container">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="passenger-name">Name</label>
+                    <input type="text" id="passenger-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="passenger-age">Age</label>
+                    <input type="number" id="passenger-age" min="1" required>
+                </div>
+                <button type="submit" class="btn primary-btn">Register</button>
+            </form>
+            <div id="register-result" class="result-box"></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>IRCTC Train Booking</h3>
+            <p>Your one-stop solution for train travel across India.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#" data-section="home">Home</a></li>
+                <li><a href="#" data-section="trains">Trains</a></li>
+                <li><a href="#" data-section="book-tickets">Book Tickets</a></li>
+                <li><a href="#" data-section="register">Register</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 IRCTC Train Booking System. All rights reserved.</p>
+    </div>
+</footer>
+
+<div id="notification" class="notification">
+    <div class="notification-content">
+        <p id="notification-message"></p>
+        <span class="close-notification">&times;</span>
+    </div>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
